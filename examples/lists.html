@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>ta-dom list examples</title>
+    <script src="../lib/ta-dom.js"></script>
+  </head>
+  <style>
+    html, body {
+      font-family:sans-serif;
+    }
+  </style>
+  <body>
+    <script>
+      // lists
+      const users = [
+        {
+          name: "steve",
+          age: 97,
+          gender: 'male'
+        },
+         {
+          name: "carl",
+          age: 17,
+          gender: 'male'
+        },
+         {
+          name: "jennnnnifer",
+          age: 397,
+          gender: 'female'
+        },
+      ];
+
+      const usercard = (user) =>
+          div({class: 'usercard'},
+              h1({}, user.name),
+              h3({}, `${user.age}`)
+            )
+
+      const malecards = users
+          .filter(u => u.gender === 'male')
+          .sort((a , b) => a.age > b.age)
+          .map(usercard)
+
+
+      // build the thing
+      document.body.appendChild(
+        div({}, malecards)
+      );
+
+    </script>
+  </body>
+</html>
