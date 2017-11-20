@@ -1,5 +1,5 @@
 ## Ta-Dom! ##
-A tiny, simple, functional helper library for generating DOM elements. Inspired in part by the jade templating engine for node.
+A tiny, functional helper library for generating DOM elements. Inspired in part by the jade templating engine for node.
 
 ### Usage ###
 

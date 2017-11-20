@@ -2,13 +2,13 @@
   "name": "ta-dom",
   "version": "0.0.1",
   "description": "A tiny, simple, functional helper library for generating DOM elements. Inspired in part by the jade templating engine for node.",
-  "main": "index.js",
   "directories": {
     "example": "examples",
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start karma.conf.js"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "dist": "./node_modules/uglify-es/bin/uglifyjs lib/ta-dom.js -o dist/ta-dom.min.js"
   },
   "author": "jrobinsonmedia@gmail.com",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.0"
+    "karma-jasmine": "^1.1.0",
+    "uglify-es": "^3.1.10"
   }
 }
