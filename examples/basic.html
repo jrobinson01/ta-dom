@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>ta-dom basic examples</title>
-    <script src="../dist/ta-dom.min.js"></script>
+    <script src="../lib/ta-dom.js"></script>
   </head>
   <style>
     html, body {
@@ -27,7 +27,8 @@
                 span({}, 'yay span!'), span({}, 'blarg span!')),
             article({}, h4({},'ARTICLE HEAER'), 'hi article'),
             myForm(),
-            myForm()
+            myForm(),
+            div({enabled:true, count:3}, 'more div')
            )
       );
     </script>
