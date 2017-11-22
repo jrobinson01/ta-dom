@@ -2,18 +2,19 @@
 A tiny, functional helper library for generating DOM elements. Inspired in part by the jade templating engine for node.
 
 ### How it works ###
-Ta-Dom generates a global function that returns an HTML element for each valid html tag. The attributes object is a plain object whose key/value pairs make up the desired attributes. The content param can hold text content, or any number of other elements.
+Ta-Dom generates a bunch of named global functions that return an HTML element with the matching tag name. The optional attributes parameter is a plain object whose key/value pairs make up the desired attributes. The optional content param can hold text content, or any number of other elements.
 ```javascript
 div(attributesObject, ...content);
 ```
 
-Event listeners can also be specified in the attributes object by specifying the name of the event, with the 'on-' prefix and a function defining the event handler.
+Event listeners can also be specified in the attributes object by specifying the name of the event prefixed with 'on-' and a function defining the event handler.
 
 ```javascript
 div({'on-click',(event)=> console.log(event)});
 ```
 
-### Usage ###
+
+#### Examples ####
 
 generate a single div element with a class:
 ```javascript
@@ -23,6 +24,17 @@ div({class:'how-i-like-my-divs'});
 ```html
   <div class="how-i-like-my-divs"></div>
 ```
+
+a really bare header:
+```javascript
+header();
+```
+
+```html
+  <header></header>
+```
+
+
 
 with some text content:
 ```javascript
@@ -36,7 +48,7 @@ div({class:'how-i-like-my-divs'}, 'Hello, World!');
 with some nested elements:
 ```javascript
 div({class:'how-i-like-my-divs'}, 'Hello, World!',
-      h1({},'HEADER'),
+      h1('HEADER'),
       article({class:'how-i-like-my-articles'}, 'blah blah blah');
     );
 ```

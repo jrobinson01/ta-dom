@@ -1,3 +1,5 @@
+const TaDom = {};
+
 // assign attributes
 function applyAttributes(el, attributes) {
   if (!attributes) {
@@ -22,11 +24,16 @@ function applyEventListeners(el, attributes) {
     return el;
   }
    for(let key in attributes) {
-    if (typeof attributes[key] === 'function') {
+     const prop = attributes[key];
+    if (typeof prop === 'function') {
       // if function, it should be an event handler.
       if(key.indexOf('on-') === 0) {
         const eventName = key.split('on-')[1];
-        el.addEventListener(eventName, attributes[key]);
+        // const existing = listeners.get(el);
+        // if (existing) {
+        //   existing.push({eventName, fn:attri})
+        // }
+        el.addEventListener(eventName, prop);
       }
     }
   }
@@ -57,8 +64,18 @@ function element(tagName, attributes, ...contents) {
 }
 
 // generates a tag function
-function generate(tag) {
+TaDom.generate = function(tag) {
   return function(attributes, ...contents) {
+    // make attributes argument optional
+    if(attributes instanceof HTMLElement ||
+      typeof attributes === 'string' ||
+      typeof attributes === 'number'){
+      contents.unshift(attributes);
+      attributes = {};
+    } else if (Array.isArray(attributes)) {
+      contents = attributes.concat(contents);
+      attributes = {};
+    }
     return element(tag, attributes, contents);
   }
 }
@@ -80,8 +97,10 @@ const tags = [
 // generate global tag functions
 tags.forEach(tag => {
   if (!window[tag]) {
-    window[tag] = generate(tag);
+    window[tag] = TaDom.generate(tag);
   } else {
     console.warn(`window.${tag} is already defined!`);
   }
 });
+
+export default TaDom;
