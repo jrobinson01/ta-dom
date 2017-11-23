@@ -4,7 +4,7 @@
   "main": "index.js",
   "description": "A tiny, simple, functional helper library for generating DOM elements. Inspired in part by the jade templating engine for node.",
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "https://github.com/jrobinson01/ta-dom.git"
   },
   "directories": {
