@@ -8,11 +8,16 @@ function applyAttributes(el, attributes) {
    for(let key in attributes) {
     const value = attributes[key];
     if (typeof value === 'string' || typeof value === 'number') {
+      // convert to string
       el.setAttribute(key, String(attributes[key]));
     } else if (typeof value === 'boolean') {
+      // empty string if true, otherwise ignore
       if(value) {
         el.setAttribute(key, '');
       }
+    } else {
+      // set as property
+      el[key] = value;
     }
   }
   return el;
@@ -29,10 +34,6 @@ function applyEventListeners(el, attributes) {
       // if function, it should be an event handler.
       if(key.indexOf('on-') === 0) {
         const eventName = key.split('on-')[1];
-        // const existing = listeners.get(el);
-        // if (existing) {
-        //   existing.push({eventName, fn:attri})
-        // }
         el.addEventListener(eventName, prop);
       }
     }
@@ -66,7 +67,7 @@ function element(tagName, attributes, ...contents) {
 // generates a tag function
 TaDom.generate = function(tag) {
   return function(attributes, ...contents) {
-    // make attributes argument optional
+    // attributes argument is optional
     if(attributes instanceof HTMLElement ||
       typeof attributes === 'string' ||
       typeof attributes === 'number'){

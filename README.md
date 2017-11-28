@@ -13,7 +13,6 @@ Event listeners can also be specified in the attributes object by specifying the
 div({'on-click',(event)=> console.log(event)});
 ```
 
-
 #### Examples ####
 
 generate a single div element with a class:
