@@ -1,6 +1,6 @@
 {
   "name": "ta-dom",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index.js",
   "description": "A tiny, simple, functional helper library for generating DOM elements. Inspired in part by the jade templating engine for node.",
   "repository": {
