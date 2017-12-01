@@ -34,7 +34,24 @@ function applyEventListeners(el, attributes) {
       // if function, it should be an event handler.
       if(key.indexOf('on-') === 0) {
         const eventName = key.split('on-')[1];
-        el.addEventListener(eventName, prop);
+
+        // store listeners on element so they can
+        // easily be removed elsewhere
+        if (!el.__eventListeners) {
+          el.__eventListeners = [{eventName, fn:prop}];
+          el.addEventListener(eventName, prop);
+        } else {
+          // element already has event listeners
+          if (el.__eventListeners.find(e => {
+            return e.eventName === eventName && e.fn === prop;
+          }) === undefined) {
+            el.__eventListeners.push({eventName, fn:prop});
+            el.addEventListener(eventName, prop);
+          } else {
+            // console.log('avoided adding duplicate listener', el, eventName, el.__eventListeners);
+          }
+        }
+
       }
     }
   }
